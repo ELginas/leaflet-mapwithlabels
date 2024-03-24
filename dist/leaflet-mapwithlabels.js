@@ -48,6 +48,9 @@ L.MapWithLabels = L.Map.extend({
         console.log('wasd', layer)
         L.Map.prototype.addLayer.call(this, layer);
         // if it is not a layer group, look for label
+        if (!layer.pm || layer.pm._shape) {
+            return;
+        }
         if (!layer.getLayers && layer.options.label) {
             let layerId = layer._leaflet_id; // ID of the layer the label belongs to
             let anchor = [0, 0], size = [0, 0]; // icon anchor point and size (if there is an icon)
