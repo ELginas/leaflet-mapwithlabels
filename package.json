@@ -1,0 +1,14 @@
+{
+    "name": "leaflet-mapwithlabels",
+    "version": "1.0.1",
+    "main": "dist/leaflet-mapwithlabels.js",
+    "style": "dist/leaflet-mapwithlabels.css",
+    "files": [
+      "dist"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/samanbey/leaflet-mapwithlabels.git"
+    }
+  }
+  
