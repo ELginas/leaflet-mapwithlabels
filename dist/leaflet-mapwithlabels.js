@@ -45,7 +45,7 @@ L.MapWithLabels = L.Map.extend({
     },
        
     addLayer(layer, updateLabels = true) {
-        console.log('wasd'), layer
+        console.log('wasd', layer)
         L.Map.prototype.addLayer.call(this, layer);
         // if it is not a layer group, look for label
         if (!layer.getLayers && layer.options.label) {
