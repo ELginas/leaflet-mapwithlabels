@@ -54,7 +54,7 @@ L.MapWithLabels = L.Map.extend({
         if (!layer.getLayers && layer.options.label) {
             let layerId = layer._leaflet_id; // ID of the layer the label belongs to
             let anchor = [0, 0], size = [0, 0]; // icon anchor point and size (if there is an icon)
-            let geomType = layer.pm._shape ? layer.feature.geometry.type : 'Marker';
+            let geomType = layer.pm._shape;
             
             // for points with an icon or a circle, get symbol size and anchor point
             if (geomType == 'Point' || geomType == 'Marker') {
