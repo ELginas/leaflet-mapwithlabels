@@ -4,5 +4,6 @@
     font-size: 15px;
     line-height: normal;
     padding: 2px;
-    text-shadow: -1px -1px #fff, 1px 1px #fff, -1px 1px #fff, 1px -1px #fff, 0 -1px #fff, 0 1px #fff;    
+    text-shadow: -1px -1px #fff, 1px 1px #fff, -1px 1px #fff, 1px -1px #fff, 0 -1px #fff, 0 1px #fff;
+    pointer-events: none;
 }
