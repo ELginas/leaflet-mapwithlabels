@@ -114,7 +114,7 @@ L.MapWithLabels = L.Map.extend({
             }
             this._updateLabels();
         }   
-    }
+    },
     
     removeLayer(layer, updateLabels = true) {
         let layerId = layer._leaflet_id;
