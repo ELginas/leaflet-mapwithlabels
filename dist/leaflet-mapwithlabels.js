@@ -82,6 +82,39 @@ L.MapWithLabels = L.Map.extend({
                 this._updateLabels();
         }        
     },
+
+    updateLayerLabel(layer) {
+        if (!layer.getLayers && layer.options.label) {
+            let layerId = layer._leaflet_id; // ID of the layer the label belongs to
+            let anchor = [0, 0], size = [0, 0]; // icon anchor point and size (if there is an icon)
+            let geomType = layer.pm._shape;
+            
+            // for points with an icon or a circle, get symbol size and anchor point
+            if (geomType == 'Point' || geomType == 'Marker') {
+                anchor = layer.getIcon ? layer.getIcon().options.iconAnchor : [layer.getRadius(), layer.getRadius()];
+                size = layer.getIcon ? layer.getIcon().options.iconSize : [layer.getRadius() * 2, layer.getRadius() * 2];
+            }
+            
+            // geographic reference point of the label: 
+            // position of the marker or centroid of polygon or central opint of polyline
+            let latLng = layer.getLatLng ? layer.getLatLng() :
+                geomType.endsWith('Polygon') ? L.PolyUtil.polygonCenter(layer._defaultShape(), L.CRS.EPSG3857)
+                                             : L.LineUtil.polylineCenter(layer._defaultShape(), L.CRS.EPSG3857);
+        
+            let pri = layer.options.labelPriority ? typeof layer.options.labelPriority == "function" ? layer.options.labelPriority(layer) : layer.options.labelPriority : 0;
+            // labels are stored by their layer ID
+            this._labels[layerId] = {
+                label: layer.options.label,
+                anchor: anchor, 
+                size: size,
+                latLng: latLng,
+                layer: layer,
+                geomType: geomType,
+                priority: pri
+            }
+            this._updateLabels();
+        }   
+    }
     
     removeLayer(layer, updateLabels = true) {
         let layerId = layer._leaflet_id;
