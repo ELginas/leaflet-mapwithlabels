@@ -211,14 +211,6 @@ L.MapWithLabels = L.Map.extend({
                     y2: pos.y - lab.anchor[1] + lab.size[1] 
                 }; // bounding box of a marker icon
                 let fits = true;
-                // check icon placing conflict for point features with markers
-                if (lab.size[0] > 0 && lab.size[1] > 0) 
-                    this._bbs.some(b => {
-                        if (this._intersects(b, markerbb)) {                        
-                            fits = false;
-                            return true;
-                        }
-                    });
                 
                 // create <span> element for label
                 let ls = L.DomUtil.create('span', 'leaflet-label', this._labelContainer);
@@ -247,13 +239,6 @@ L.MapWithLabels = L.Map.extend({
                         if (bb.x1 > mapx2 || bb.x2 < mapx1 || bb.y1 > mapy2 || bb.y2 < mapy1) {
                             fits = false;
                         }
-                        else 
-                            this._bbs.some(b => {
-                                if (this._intersects(b,bb)) {                        
-                                    fits = false;
-                                    return true;
-                                }
-                            }); // check for conflicts with already existing labels
                         if (fits) {
                             lab.pos = lp;
                             break;
