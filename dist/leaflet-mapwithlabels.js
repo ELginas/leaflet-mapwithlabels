@@ -107,7 +107,7 @@ L.MapWithLabels = L.Map.extend({
                 label: layer.options.label,
                 anchor: anchor, 
                 size: size,
-                latLng: latLng,
+                latLng: layer.options?.latLng ?? latLng,
                 layer: layer,
                 geomType: geomType,
                 priority: pri
